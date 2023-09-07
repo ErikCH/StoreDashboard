@@ -1,6 +1,19 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app";
+import "@/styles/globals.css";
+import "@aws-amplify/ui-react/styles.css";
+import { Amplify } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import awsExports from "@/aws-exports";
+import Layout from "@/components/Layout";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+Amplify.configure(awsExports);
+
+function App({ Component, pageProps }: AppProps) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
+
+export default withAuthenticator(App);

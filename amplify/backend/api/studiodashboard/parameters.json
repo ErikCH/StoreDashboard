@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "studiodashboard",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}
