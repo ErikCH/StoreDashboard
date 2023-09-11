@@ -204,6 +204,7 @@ export default function ProductUpdateForm(props) {
     price: "",
     platformID: undefined,
     genreID: undefined,
+    image: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [isSold, setIsSold] = React.useState(initialValues.isSold);
@@ -219,6 +220,7 @@ export default function ProductUpdateForm(props) {
   const [selectedGenreIDRecords, setSelectedGenreIDRecords] = React.useState(
     []
   );
+  const [image, setImage] = React.useState(initialValues.image);
   const autocompleteLength = 10;
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -234,6 +236,7 @@ export default function ProductUpdateForm(props) {
     setGenreID(cleanValues.genreID);
     setCurrentGenreIDValue(undefined);
     setCurrentGenreIDDisplayValue("");
+    setImage(cleanValues.image);
     setErrors({});
   };
   const [productRecord, setProductRecord] = React.useState(productModelProp);
@@ -294,6 +297,7 @@ export default function ProductUpdateForm(props) {
     price: [],
     platformID: [{ type: "Required" }],
     genreID: [{ type: "Required" }],
+    image: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -384,6 +388,7 @@ export default function ProductUpdateForm(props) {
           price: price ?? null,
           platformID,
           genreID,
+          image: image ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -449,6 +454,7 @@ export default function ProductUpdateForm(props) {
               price,
               platformID,
               genreID,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -477,6 +483,7 @@ export default function ProductUpdateForm(props) {
               price,
               platformID,
               genreID,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.isSold ?? value;
@@ -509,6 +516,7 @@ export default function ProductUpdateForm(props) {
               price: value,
               platformID,
               genreID,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.price ?? value;
@@ -534,6 +542,7 @@ export default function ProductUpdateForm(props) {
               price,
               platformID: value,
               genreID,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.platformID ?? value;
@@ -630,6 +639,7 @@ export default function ProductUpdateForm(props) {
               price,
               platformID,
               genreID: value,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.genreID ?? value;
@@ -713,6 +723,35 @@ export default function ProductUpdateForm(props) {
           {...getOverrideProps(overrides, "genreID")}
         ></Autocomplete>
       </ArrayField>
+      <TextField
+        label="Image"
+        isRequired={false}
+        isReadOnly={false}
+        value={image}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              isSold,
+              price,
+              platformID,
+              genreID,
+              image: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.image ?? value;
+          }
+          if (errors.image?.hasError) {
+            runValidationTasks("image", value);
+          }
+          setImage(value);
+        }}
+        onBlur={() => runValidationTasks("image", image)}
+        errorMessage={errors.image?.errorMessage}
+        hasError={errors.image?.hasError}
+        {...getOverrideProps(overrides, "image")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

@@ -19,4 +19,6 @@ type Product @model @auth(rules: [{allow: public}]) {
   price: Float
   platformID: ID! @index(name: "byPlatform")
   genreID: ID! @index(name: "byGenre")
+  image: String
 }
+ 

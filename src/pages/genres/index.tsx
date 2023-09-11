@@ -1,19 +1,40 @@
-import {
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  View
-} from "@aws-amplify/ui-react";
+import ItemsTable from "@/components/ItemsTable";
+import { Button, Flex, Heading } from "@aws-amplify/ui-react";
 import { useRouter } from "next/router";
+
+import { API } from "aws-amplify";
+import * as queries from "@/graphql/queries";
+import { GraphQLQuery, GraphQLResult } from "@aws-amplify/api";
+import { Genre, ListGenresQuery } from "@/API";
+import { useEffect, useState } from "react";
+
+// export interface TableValues {
+//   name: string;
+//   value: string;
+// }
+export type TableValues = Pick<Genre, "name" | "value" | "createdAt">;
 
 export default function Genres() {
   const router = useRouter();
+
+  const [genre, setGenre] = useState<GraphQLResult<
+    GraphQLQuery<ListGenresQuery>
+  > | null>(null);
+
+  const [genre2, setGenre2] = useState<TableValues[]>();
+
+  useEffect(() => {
+    async function grabGenres() {
+      const allGenres = await API.graphql<GraphQLQuery<ListGenresQuery>>({
+        query: queries.listGenres,
+      });
+      console.log(allGenres);
+      setGenre(allGenres);
+      setGenre2(allGenres.data?.listGenres?.items as TableValues[]);
+    }
+    grabGenres();
+  }, []);
+
   return (
     <>
       <Flex
@@ -31,32 +52,12 @@ export default function Genres() {
           Add Genre
         </Button>
       </Flex>
-      <Table caption="Large Table" width="50%" margin="0 auto">
-        <TableHead>
-          <TableRow>
-            <TableCell as="th">Name</TableCell>
-            <TableCell as="th">Value</TableCell>
-            <TableCell as="th">Date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+      {genre?.data === undefined ? (
+        ""
+      ) : (
+        // <ItemsTable tableName="Genres" data={genre?.data!} />
+        <ItemsTable tableName="Genres" data={genre2!} />
+      )}
     </>
   );
 }

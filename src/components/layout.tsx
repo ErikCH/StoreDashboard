@@ -10,29 +10,28 @@ export default function Layout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const params = useParams();
 
   const routes = [
     {
       href: `/`,
-      label: "Home",
-      active: pathname === `/`
+      label: "Overview",
+      active: pathname === `/`,
     },
     {
       href: `/genres`,
       label: "Genres",
-      active: pathname === `/genres`
+      active: pathname === `/genres`,
     },
     {
       href: `/platforms`,
       label: "Platform",
-      active: pathname === `/platforms`
+      active: pathname === `/platforms`,
     },
     {
       href: `/products`,
       label: "Products",
-      active: pathname === `/products`
-    }
+      active: pathname === `/products`,
+    },
   ];
   return (
     <>

@@ -6,6 +6,7 @@
 
 import * as React from "react";
 import { AutocompleteProps, GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { StorageManagerProps } from "@aws-amplify/ui-react-storage";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -16,6 +17,7 @@ export declare type ProductCreateFormInputValues = {
     name?: string;
     isSold?: boolean;
     price?: number;
+    image?: string;
     platformID?: string;
     genreID?: string;
 };
@@ -23,6 +25,7 @@ export declare type ProductCreateFormValidationValues = {
     name?: ValidationFunction<string>;
     isSold?: ValidationFunction<boolean>;
     price?: ValidationFunction<number>;
+    image?: ValidationFunction<string>;
     platformID?: ValidationFunction<string>;
     genreID?: ValidationFunction<string>;
 };
@@ -32,6 +35,7 @@ export declare type ProductCreateFormOverridesProps = {
     name?: PrimitiveOverrideProps<TextFieldProps>;
     isSold?: PrimitiveOverrideProps<SwitchFieldProps>;
     price?: PrimitiveOverrideProps<TextFieldProps>;
+    image?: PrimitiveOverrideProps<StorageManagerProps>;
     platformID?: PrimitiveOverrideProps<AutocompleteProps>;
     genreID?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;

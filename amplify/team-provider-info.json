@@ -1,18 +1,21 @@
 {
-  "staging": {
+  "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-studiodashboard-staging-224954-authRole",
-      "UnauthRoleArn": "arn:aws:iam::127847013811:role/amplify-studiodashboard-staging-224954-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::127847013811:role/amplify-studiodashboard-staging-224954-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-studiodashboard-staging-224954-deployment",
-      "UnauthRoleName": "amplify-studiodashboard-staging-224954-unauthRole",
-      "StackName": "amplify-studiodashboard-staging-224954",
-      "StackId": "arn:aws:cloudformation:us-east-2:127847013811:stack/amplify-studiodashboard-staging-224954/b24043d0-4d07-11ee-957c-0a4fab16169d",
-      "AmplifyAppId": "dqdjmri3u10eu"
+      "AuthRoleName": "amplify-studiodashboard-dev-133642-authRole",
+      "UnauthRoleArn": "arn:aws:iam::978507172420:role/amplify-studiodashboard-dev-133642-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::978507172420:role/amplify-studiodashboard-dev-133642-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-studiodashboard-dev-133642-deployment",
+      "UnauthRoleName": "amplify-studiodashboard-dev-133642-unauthRole",
+      "StackName": "amplify-studiodashboard-dev-133642",
+      "StackId": "arn:aws:cloudformation:us-east-1:978507172420:stack/amplify-studiodashboard-dev-133642/6e1efc60-4e87-11ee-912c-0e81171456f5",
+      "AmplifyAppId": "d2wp45f8c9m14t"
     },
     "categories": {
       "auth": {
+        "studiodashboard": {}
+      },
+      "api": {
         "studiodashboard": {}
       }
     }

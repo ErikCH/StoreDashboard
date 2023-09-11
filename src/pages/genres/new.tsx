@@ -1,7 +1,9 @@
 import { Flex, Heading, View } from "@aws-amplify/ui-react";
 import GenreCreateForm from "@/ui-components/GenreCreateForm";
+import { useRouter } from "next/router";
 
-export default function New() {
+export default function NewGenre() {
+  const router = useRouter();
   return (
     <>
       <Heading level={1}>Create New Genre</Heading>
@@ -10,6 +12,7 @@ export default function New() {
           width="340px"
           border="1px solid black"
           borderRadius={"1 rem"}
+          onSuccess={() => router.push("/genres")}
         />
       </Flex>
     </>
