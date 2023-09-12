@@ -19,6 +19,7 @@ export const createGenre = /* GraphQL */ `
           price
           platformID
           genreID
+          image
           createdAt
           updatedAt
           __typename
@@ -49,6 +50,7 @@ export const updateGenre = /* GraphQL */ `
           price
           platformID
           genreID
+          image
           createdAt
           updatedAt
           __typename
@@ -79,6 +81,7 @@ export const deleteGenre = /* GraphQL */ `
           price
           platformID
           genreID
+          image
           createdAt
           updatedAt
           __typename
@@ -109,6 +112,7 @@ export const createPlatform = /* GraphQL */ `
           price
           platformID
           genreID
+          image
           createdAt
           updatedAt
           __typename
@@ -139,6 +143,7 @@ export const updatePlatform = /* GraphQL */ `
           price
           platformID
           genreID
+          image
           createdAt
           updatedAt
           __typename
@@ -169,6 +174,7 @@ export const deletePlatform = /* GraphQL */ `
           price
           platformID
           genreID
+          image
           createdAt
           updatedAt
           __typename
@@ -194,6 +200,7 @@ export const createProduct = /* GraphQL */ `
       price
       platformID
       genreID
+      image
       createdAt
       updatedAt
       __typename
@@ -212,6 +219,7 @@ export const updateProduct = /* GraphQL */ `
       price
       platformID
       genreID
+      image
       createdAt
       updatedAt
       __typename
@@ -230,6 +238,7 @@ export const deleteProduct = /* GraphQL */ `
       price
       platformID
       genreID
+      image
       createdAt
       updatedAt
       __typename

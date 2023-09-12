@@ -4,24 +4,15 @@ import { useRouter } from "next/router";
 
 import { API } from "aws-amplify";
 import * as queries from "@/graphql/queries";
-import { GraphQLQuery, GraphQLResult } from "@aws-amplify/api";
-import { Genre, ListGenresQuery } from "@/API";
+import { GraphQLQuery } from "@aws-amplify/api";
+import { ListGenresQuery } from "@/API";
 import { useEffect, useState } from "react";
-
-// export interface TableValues {
-//   name: string;
-//   value: string;
-// }
-export type TableValues = Pick<Genre, "name" | "value" | "createdAt">;
+import { TableValues } from "@/types/types";
 
 export default function Genres() {
   const router = useRouter();
 
-  const [genre, setGenre] = useState<GraphQLResult<
-    GraphQLQuery<ListGenresQuery>
-  > | null>(null);
-
-  const [genre2, setGenre2] = useState<TableValues[]>();
+  const [genre, setGenre] = useState<TableValues[]>();
 
   useEffect(() => {
     async function grabGenres() {
@@ -29,8 +20,7 @@ export default function Genres() {
         query: queries.listGenres,
       });
       console.log(allGenres);
-      setGenre(allGenres);
-      setGenre2(allGenres.data?.listGenres?.items as TableValues[]);
+      setGenre(allGenres.data?.listGenres?.items as TableValues[]);
     }
     grabGenres();
   }, []);
@@ -52,11 +42,8 @@ export default function Genres() {
           Add Genre
         </Button>
       </Flex>
-      {genre?.data === undefined ? (
-        ""
-      ) : (
-        // <ItemsTable tableName="Genres" data={genre?.data!} />
-        <ItemsTable tableName="Genres" data={genre2!} />
+      {genre === undefined ? null : (
+        <ItemsTable tableName="Genres" data={genre} />
       )}
     </>
   );

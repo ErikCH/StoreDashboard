@@ -5,22 +5,22 @@ import { useEffect, useState } from "react";
 
 import { API } from "aws-amplify";
 import * as queries from "@/graphql/queries";
-import { GraphQLQuery, GraphQLResult } from "@aws-amplify/api";
+import { GraphQLQuery } from "@aws-amplify/api";
 import { ListPlatformsQuery } from "@/API";
+import { TableValues } from "@/types/types";
 
 export default function Platforms() {
   const router = useRouter();
-  const [platform, setPlatform] = useState<GraphQLResult<
-    GraphQLQuery<ListPlatformsQuery>
-  > | null>(null);
+  const [platform, setPlatform] = useState<TableValues[]>();
 
   useEffect(() => {
     async function grabPlatform() {
-      const allGenres = await API.graphql<GraphQLQuery<ListPlatformsQuery>>({
+      const allPlatforms = await API.graphql<GraphQLQuery<ListPlatformsQuery>>({
         query: queries.listPlatforms,
       });
-      console.log(allGenres);
-      setPlatform(allGenres);
+      console.log(allPlatforms);
+
+      setPlatform(allPlatforms.data?.listPlatforms?.items as TableValues[]);
     }
     grabPlatform();
   }, []);
@@ -44,10 +44,10 @@ export default function Platforms() {
           Add Platform
         </Button>
       </Flex>
-      {platform?.data === undefined ? (
+      {platform === undefined ? (
         ""
       ) : (
-        <ItemsTable tableName="Platforms" data={platform?.data!} />
+        <ItemsTable tableName="Platforms" data={platform} />
       )}
     </>
   );

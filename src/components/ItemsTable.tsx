@@ -1,3 +1,4 @@
+import { TableValues } from "@/types/types";
 import {
   Table,
   TableHead,
@@ -6,13 +7,6 @@ import {
   TableBody,
 } from "@aws-amplify/ui-react";
 
-import { ListGenresQuery } from "@/API";
-import { ListPlatformsQuery } from "@/API";
-import { TableValues } from "@/pages/genres";
-
-// type PossibleQueries = ListGenresQuery | ListPlatformsQuery;
-
-// interface ItemsTableProps<PossibleQueries> {
 interface ItemsTableProps {
   tableName: string;
   data: TableValues[];
@@ -39,15 +33,6 @@ export default function ItemsTable({ tableName, data }: ItemsTableProps) {
             </TableCell>
           </TableRow>
         ))}
-        {/* {(data as ListPlatformsQuery).listPlatforms?.items.map((item, key) => (
-          <TableRow key={key}>
-            <TableCell>{item?.name}</TableCell>
-            <TableCell>{item?.value}</TableCell>
-            <TableCell>
-              {Intl.DateTimeFormat("en-us").format(new Date(item?.createdAt!))}
-            </TableCell>
-          </TableRow>
-        ))} */}
       </TableBody>
     </Table>
   );
