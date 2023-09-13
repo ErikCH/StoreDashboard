@@ -21,6 +21,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
           <TableCell as="th">Genre</TableCell>
           <TableCell as="th">Platform</TableCell>
           <TableCell as="th">Image</TableCell>
+          <TableCell as="th">Date Added</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
