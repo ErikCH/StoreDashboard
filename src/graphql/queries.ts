@@ -14,9 +14,9 @@ export const getGenre = /* GraphQL */ `
           name
           isSold
           price
+          image
           platformID
           genreID
-          image
           createdAt
           updatedAt
           __typename
@@ -66,9 +66,9 @@ export const getPlatform = /* GraphQL */ `
           name
           isSold
           price
+          image
           platformID
           genreID
-          image
           createdAt
           updatedAt
           __typename
@@ -113,9 +113,33 @@ export const getProduct = /* GraphQL */ `
       name
       isSold
       price
-      platformID
-      genreID
       image
+      platformID
+      Genre {
+        id
+        name
+        value
+        Products {
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      Platform {
+        id
+        name
+        value
+        Products {
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      genreID
       createdAt
       updatedAt
       __typename
@@ -134,9 +158,25 @@ export const listProducts = /* GraphQL */ `
         name
         isSold
         price
-        platformID
-        genreID
         image
+        platformID
+        Genre {
+          id
+          name
+          value
+          createdAt
+          updatedAt
+          __typename
+        }
+        Platform {
+          id
+          name
+          value
+          createdAt
+          updatedAt
+          __typename
+        }
+        genreID
         createdAt
         updatedAt
         __typename
@@ -166,9 +206,25 @@ export const productsByPlatformID = /* GraphQL */ `
         name
         isSold
         price
-        platformID
-        genreID
         image
+        platformID
+        Genre {
+          id
+          name
+          value
+          createdAt
+          updatedAt
+          __typename
+        }
+        Platform {
+          id
+          name
+          value
+          createdAt
+          updatedAt
+          __typename
+        }
+        genreID
         createdAt
         updatedAt
         __typename
@@ -198,9 +254,25 @@ export const productsByGenreID = /* GraphQL */ `
         name
         isSold
         price
-        platformID
-        genreID
         image
+        platformID
+        Genre {
+          id
+          name
+          value
+          createdAt
+          updatedAt
+          __typename
+        }
+        Platform {
+          id
+          name
+          value
+          createdAt
+          updatedAt
+          __typename
+        }
+        genreID
         createdAt
         updatedAt
         __typename

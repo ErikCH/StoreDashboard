@@ -29,8 +29,8 @@ export default function ProductsTable({ products }: ProductsTableProps) {
           <TableRow key={key}>
             <TableCell>{item?.name}</TableCell>
             <TableCell>${item?.price}</TableCell>
-            <TableCell>{item?.genreID}</TableCell>
-            <TableCell>{item?.platformID}</TableCell>
+            <TableCell>{item?.Genre?.name}</TableCell>
+            <TableCell>{item?.Platform?.name}</TableCell>
             <TableCell>
               {item?.image === null || item?.image === undefined ? null : (
                 <StorageImage

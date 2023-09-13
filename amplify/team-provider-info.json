@@ -17,6 +17,9 @@
       },
       "api": {
         "studiodashboard": {}
+      },
+      "storage": {
+        "s3studiodashboardstorage6411928f": {}
       }
     }
   }
