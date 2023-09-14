@@ -3,14 +3,7 @@ import { API } from "aws-amplify";
 import { useEffect, useState } from "react";
 import * as queries from "@/graphql/queries";
 import { GraphQLQuery } from "@aws-amplify/api";
-import {
-  GetGenreQuery,
-  GetGenreQueryVariables,
-  GetPlatformQuery,
-  GetPlatformQueryVariables,
-  ListProductsQuery,
-  Product,
-} from "@/API";
+import { ListProductsQuery, Product } from "@/API";
 import ProductsTable from "@/components/ProductsTable";
 
 export default function Home() {
