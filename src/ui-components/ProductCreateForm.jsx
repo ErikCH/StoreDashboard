@@ -20,8 +20,9 @@ import {
   TextField,
   useTheme,
 } from "@aws-amplify/ui-react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { fetchByPath, validateField } from "./utils";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
+import { Field, getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { fetchByPath, processFile, validateField } from "./utils";
 import { API } from "aws-amplify";
 import { listGenres, listPlatforms } from "../graphql/queries";
 import { createProduct } from "../graphql/mutations";
@@ -195,12 +196,14 @@ export default function ProductCreateForm(props) {
     name: "",
     isSold: false,
     price: "",
+    image: undefined,
     platformID: undefined,
     genreID: undefined,
   };
   const [name, setName] = React.useState(initialValues.name);
   const [isSold, setIsSold] = React.useState(initialValues.isSold);
   const [price, setPrice] = React.useState(initialValues.price);
+  const [image, setImage] = React.useState(initialValues.image);
   const [platformID, setPlatformID] = React.useState(initialValues.platformID);
   const [platformIDLoading, setPlatformIDLoading] = React.useState(false);
   const [platformIDRecords, setPlatformIDRecords] = React.useState([]);
@@ -218,6 +221,7 @@ export default function ProductCreateForm(props) {
     setName(initialValues.name);
     setIsSold(initialValues.isSold);
     setPrice(initialValues.price);
+    setImage(initialValues.image);
     setPlatformID(initialValues.platformID);
     setCurrentPlatformIDValue(undefined);
     setCurrentPlatformIDDisplayValue("");
@@ -244,6 +248,7 @@ export default function ProductCreateForm(props) {
     name: [],
     isSold: [],
     price: [],
+    image: [],
     platformID: [{ type: "Required" }],
     genreID: [{ type: "Required" }],
   };
@@ -334,6 +339,7 @@ export default function ProductCreateForm(props) {
           name,
           isSold,
           price,
+          image,
           platformID,
           genreID,
         };
@@ -401,6 +407,7 @@ export default function ProductCreateForm(props) {
               name: value,
               isSold,
               price,
+              image,
               platformID,
               genreID,
             };
@@ -429,6 +436,7 @@ export default function ProductCreateForm(props) {
               name,
               isSold: value,
               price,
+              image,
               platformID,
               genreID,
             };
@@ -461,6 +469,7 @@ export default function ProductCreateForm(props) {
               name,
               isSold,
               price: value,
+              image,
               platformID,
               genreID,
             };
@@ -477,6 +486,59 @@ export default function ProductCreateForm(props) {
         hasError={errors.price?.hasError}
         {...getOverrideProps(overrides, "price")}
       ></TextField>
+      <Field
+        errorMessage={errors.image?.errorMessage}
+        hasError={errors.image?.hasError}
+        label={"Image"}
+        isRequired={false}
+        isReadOnly={false}
+      >
+        <StorageManager
+          onUploadSuccess={({ key }) => {
+            setImage((prev) => {
+              let value = key;
+              if (onChange) {
+                const modelFields = {
+                  name,
+                  isSold,
+                  price,
+                  image: value,
+                  platformID,
+                  genreID,
+                };
+                const result = onChange(modelFields);
+                value = result?.image ?? value;
+              }
+              return value;
+            });
+          }}
+          onFileRemove={({ key }) => {
+            setImage((prev) => {
+              let value = initialValues?.image;
+              if (onChange) {
+                const modelFields = {
+                  name,
+                  isSold,
+                  price,
+                  image: value,
+                  platformID,
+                  genreID,
+                };
+                const result = onChange(modelFields);
+                value = result?.image ?? value;
+              }
+              return value;
+            });
+          }}
+          processFile={processFile}
+          accessLevel={"private"}
+          acceptedFileTypes={["image/*"]}
+          isResumable={false}
+          showThumbnails={true}
+          maxFileCount={1}
+          {...getOverrideProps(overrides, "image")}
+        ></StorageManager>
+      </Field>
       <ArrayField
         lengthLimit={1}
         onChange={async (items) => {
@@ -486,6 +548,7 @@ export default function ProductCreateForm(props) {
               name,
               isSold,
               price,
+              image,
               platformID: value,
               genreID,
             };
@@ -581,6 +644,7 @@ export default function ProductCreateForm(props) {
               name,
               isSold,
               price,
+              image,
               platformID,
               genreID: value,
             };

@@ -216,7 +216,7 @@ export default function GenreUpdateForm(props) {
   };
   const [genreRecord, setGenreRecord] = React.useState(genreModelProp);
   const [linkedProducts, setLinkedProducts] = React.useState([]);
-  const canUnlinkProducts = false;
+  const canUnlinkProducts = true;
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
@@ -375,7 +375,7 @@ export default function GenreUpdateForm(props) {
           productsToUnLink.forEach((original) => {
             if (!canUnlinkProducts) {
               throw Error(
-                `Product ${original.id} cannot be unlinked from Genre because genreID is a required field.`
+                `Product ${original.id} cannot be unlinked from Genre because undefined is a required field.`
               );
             }
             promises.push(
@@ -384,7 +384,6 @@ export default function GenreUpdateForm(props) {
                 variables: {
                   input: {
                     id: original.id,
-                    genreID: null,
                   },
                 },
               })
@@ -397,7 +396,6 @@ export default function GenreUpdateForm(props) {
                 variables: {
                   input: {
                     id: original.id,
-                    genreID: genreRecord.id,
                   },
                 },
               })
@@ -524,9 +522,7 @@ export default function GenreUpdateForm(props) {
           isReadOnly={false}
           placeholder="Search Product"
           value={currentProductsDisplayValue}
-          options={ProductsRecords.filter(
-            (r) => !ProductsIdSet.has(getIDValue.Products?.(r))
-          ).map((r) => ({
+          options={ProductsRecords.map((r) => ({
             id: getIDValue.Products?.(r),
             label: getDisplayValue.Products?.(r),
           }))}

@@ -1,7 +1,6 @@
 import React from "react";
-import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
-import { Button, Divider, Flex, View } from "@aws-amplify/ui-react";
+import { Button, Divider, Flex } from "@aws-amplify/ui-react";
 
 export default function Layout({
   children,
@@ -9,56 +8,46 @@ export default function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const params = useParams();
-
   const routes = [
     {
-      href: `/`,
-      label: "Home",
-      active: pathname === `/`
+      href: "/",
+      label: "Overview",
     },
     {
-      href: `/genres`,
+      href: "/genres",
       label: "Genres",
-      active: pathname === `/genres`
     },
     {
-      href: `/platforms`,
+      href: "/platforms",
       label: "Platform",
-      active: pathname === `/platforms`
     },
     {
-      href: `/products`,
+      href: "/products",
       label: "Products",
-      active: pathname === `/products`
-    }
+    },
   ];
   return (
     <>
       <Flex
         direction="row"
-        justifyContent={"space-between"}
+        justifyContent="space-between"
         alignItems="center"
-        marginBottom={"1rem"}
+        marginBottom="1rem"
       >
-        <nav className={"flex items-center space-x-4 lg:space-x-6"} {...props}>
+        <Flex
+          as="nav"
+          alignItems="center"
+          gap="3rem"
+          margin="0 2rem"
+          {...props}
+        >
           {routes.map((route) => (
-            <Link
-              key={route.href}
-              href={route.href}
-              className={`text-sm font-medium transition-colors hover:text-primary 
-              ${
-                route.active
-                  ? "text-black dark:text-white"
-                  : "text-muted-foreground"
-              }`}
-            >
+            <Link key={route.href} href={route.href}>
               {route.label}
             </Link>
           ))}
-        </nav>
-        <Button variation="primary" borderRadius={"100%"} className="h-8 w-8">
+        </Flex>
+        <Button variation="primary" borderRadius="100%">
           A
         </Button>
       </Flex>

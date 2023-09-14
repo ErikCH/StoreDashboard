@@ -14,6 +14,7 @@ export const onCreateGenre = /* GraphQL */ `
           name
           isSold
           price
+          image
           platformID
           genreID
           createdAt
@@ -41,6 +42,7 @@ export const onUpdateGenre = /* GraphQL */ `
           name
           isSold
           price
+          image
           platformID
           genreID
           createdAt
@@ -68,6 +70,7 @@ export const onDeleteGenre = /* GraphQL */ `
           name
           isSold
           price
+          image
           platformID
           genreID
           createdAt
@@ -95,6 +98,7 @@ export const onCreatePlatform = /* GraphQL */ `
           name
           isSold
           price
+          image
           platformID
           genreID
           createdAt
@@ -122,6 +126,7 @@ export const onUpdatePlatform = /* GraphQL */ `
           name
           isSold
           price
+          image
           platformID
           genreID
           createdAt
@@ -149,6 +154,7 @@ export const onDeletePlatform = /* GraphQL */ `
           name
           isSold
           price
+          image
           platformID
           genreID
           createdAt
@@ -171,7 +177,32 @@ export const onCreateProduct = /* GraphQL */ `
       name
       isSold
       price
+      image
       platformID
+      Genre {
+        id
+        name
+        value
+        Products {
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      Platform {
+        id
+        name
+        value
+        Products {
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       genreID
       createdAt
       updatedAt
@@ -186,7 +217,32 @@ export const onUpdateProduct = /* GraphQL */ `
       name
       isSold
       price
+      image
       platformID
+      Genre {
+        id
+        name
+        value
+        Products {
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      Platform {
+        id
+        name
+        value
+        Products {
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       genreID
       createdAt
       updatedAt
@@ -201,7 +257,32 @@ export const onDeleteProduct = /* GraphQL */ `
       name
       isSold
       price
+      image
       platformID
+      Genre {
+        id
+        name
+        value
+        Products {
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
+      Platform {
+        id
+        name
+        value
+        Products {
+          nextToken
+          __typename
+        }
+        createdAt
+        updatedAt
+        __typename
+      }
       genreID
       createdAt
       updatedAt

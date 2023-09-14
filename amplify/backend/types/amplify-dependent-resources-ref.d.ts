@@ -16,5 +16,11 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolId": "string",
       "UserPoolName": "string"
     }
+  },
+  "storage": {
+    "s3studiodashboardstorage6411928f": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

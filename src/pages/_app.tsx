@@ -6,7 +6,7 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import awsExports from "@/aws-exports";
 import Layout from "@/components/Layout";
 
-Amplify.configure(awsExports);
+Amplify.configure({ ...awsExports, ssr: true });
 
 function App({ Component, pageProps }: AppProps) {
   return (

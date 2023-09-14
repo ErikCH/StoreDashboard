@@ -1,62 +1,29 @@
-import {
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  View
-} from "@aws-amplify/ui-react";
-import { useRouter } from "next/router";
+import { API } from "aws-amplify";
+import * as queries from "@/graphql/queries";
+import { GraphQLQuery } from "@aws-amplify/api";
+import { ListGenresQuery } from "@/API";
+import { useEffect, useState } from "react";
+import { TableValues } from "@/types/types";
+import ProductDetails from "@/components/ProductDetails";
 
 export default function Genres() {
-  const router = useRouter();
+  const [genres, setGenres] = useState<TableValues[]>();
+
+  useEffect(() => {
+    async function grabGenres() {
+      const allGenres = await API.graphql<GraphQLQuery<ListGenresQuery>>({
+        query: queries.listGenres,
+      });
+      setGenres(allGenres.data?.listGenres?.items as TableValues[]);
+    }
+    grabGenres();
+  }, []);
+
   return (
     <>
-      <Flex
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        gap="1rem"
-        width="100%"
-        padding="1rem"
-        backgroundColor="white"
-        className="underline"
-      >
-        <Heading level={1}>Genres</Heading>
-        <Button variation="primary" onClick={() => router.push("/genres/new")}>
-          Add Genre
-        </Button>
-      </Flex>
-      <Table caption="Large Table" width="50%" margin="0 auto">
-        <TableHead>
-          <TableRow>
-            <TableCell as="th">Name</TableCell>
-            <TableCell as="th">Value</TableCell>
-            <TableCell as="th">Date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-            <TableCell>Large</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+      {genres === undefined ? null : (
+        <ProductDetails headingName="Genres" items={genres} />
+      )}
     </>
   );
 }
