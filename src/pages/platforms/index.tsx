@@ -8,10 +8,11 @@ import * as queries from "@/graphql/queries";
 import { GraphQLQuery } from "@aws-amplify/api";
 import { ListPlatformsQuery } from "@/API";
 import { TableValues } from "@/types/types";
+import ProductDetails from "@/components/ProductDetails";
 
 export default function Platforms() {
   const router = useRouter();
-  const [platform, setPlatform] = useState<TableValues[]>();
+  const [platforms, setPlatforms] = useState<TableValues[]>();
 
   useEffect(() => {
     async function grabPlatform() {
@@ -19,34 +20,14 @@ export default function Platforms() {
         query: queries.listPlatforms,
       });
 
-      setPlatform(allPlatforms.data?.listPlatforms?.items as TableValues[]);
+      setPlatforms(allPlatforms.data?.listPlatforms?.items as TableValues[]);
     }
     grabPlatform();
   }, []);
   return (
     <>
-      <Flex
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        gap="1rem"
-        width="100%"
-        padding="1rem"
-        backgroundColor="white"
-        className="underline"
-      >
-        <Heading level={1}>Platforms</Heading>
-        <Button
-          variation="primary"
-          onClick={() => router.push("/platforms/new")}
-        >
-          Add Platform
-        </Button>
-      </Flex>
-      {platform === undefined ? (
-        ""
-      ) : (
-        <ItemsTable tableName="Platforms" data={platform} />
+      {platforms === undefined ? null : (
+        <ProductDetails headingName="Platforms" items={platforms} />
       )}
     </>
   );

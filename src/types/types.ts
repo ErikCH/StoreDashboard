@@ -1,3 +1,21 @@
-import { Genre, Product } from "@/API";
+import { Product } from "@/API";
 
-export type TableValues = Pick<Genre, "name" | "value" | "createdAt">;
+export interface TableValues {
+  name?: string | null | undefined;
+  value?: string | null | undefined;
+  createdAt: string;
+}
+
+export interface ProductDetailsProps {
+  headingName: string;
+  items: TableValues[];
+}
+
+export interface ProductsTableProps {
+  products: Product[];
+}
+
+export interface ItemsTableProps {
+  tableName: string;
+  data: TableValues[];
+}

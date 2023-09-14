@@ -7,11 +7,11 @@ export default function NewGenre() {
   return (
     <>
       <Heading level={1}>Create New Genre</Heading>
-      <Flex justifyContent={"center"}>
+      <Flex justifyContent="center">
         <GenreCreateForm
           width="340px"
           border="1px solid black"
-          borderRadius={"1 rem"}
+          borderRadius="1 rem"
           onSuccess={() => router.push("/genres")}
         />
       </Flex>
