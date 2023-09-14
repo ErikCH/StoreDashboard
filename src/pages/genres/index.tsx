@@ -19,7 +19,6 @@ export default function Genres() {
       const allGenres = await API.graphql<GraphQLQuery<ListGenresQuery>>({
         query: queries.listGenres,
       });
-      console.log(allGenres);
       setGenre(allGenres.data?.listGenres?.items as TableValues[]);
     }
     grabGenres();

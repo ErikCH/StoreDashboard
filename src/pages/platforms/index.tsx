@@ -18,7 +18,6 @@ export default function Platforms() {
       const allPlatforms = await API.graphql<GraphQLQuery<ListPlatformsQuery>>({
         query: queries.listPlatforms,
       });
-      console.log(allPlatforms);
 
       setPlatform(allPlatforms.data?.listPlatforms?.items as TableValues[]);
     }

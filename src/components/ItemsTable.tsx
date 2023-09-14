@@ -13,7 +13,6 @@ interface ItemsTableProps {
 }
 
 export default function ItemsTable({ tableName, data }: ItemsTableProps) {
-  console.log("got data", data);
   return (
     <Table caption={tableName} width="50%" margin="0 auto">
       <TableHead>
