@@ -1,4 +1,4 @@
-import { Flex, Heading, View } from "@aws-amplify/ui-react";
+import { Flex, Heading } from "@aws-amplify/ui-react";
 import GenreCreateForm from "@/ui-components/GenreCreateForm";
 import { useRouter } from "next/router";
 

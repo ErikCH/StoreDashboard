@@ -1,6 +1,3 @@
-import ItemsTable from "@/components/ItemsTable";
-import { Button, Flex, Heading } from "@aws-amplify/ui-react";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import { API } from "aws-amplify";
@@ -11,7 +8,6 @@ import { TableValues } from "@/types/types";
 import ProductDetails from "@/components/ProductDetails";
 
 export default function Platforms() {
-  const router = useRouter();
   const [platforms, setPlatforms] = useState<TableValues[]>();
 
   useEffect(() => {

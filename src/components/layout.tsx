@@ -1,7 +1,6 @@
 import React from "react";
-import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
-import { Button, Divider, Flex, View } from "@aws-amplify/ui-react";
+import { Button, Divider, Flex } from "@aws-amplify/ui-react";
 
 export default function Layout({
   children,
@@ -9,8 +8,6 @@ export default function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-
   const routes = [
     {
       href: "/",
