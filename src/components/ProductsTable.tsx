@@ -1,4 +1,4 @@
-import { GetGenreQueryVariables, Product } from "@/API";
+import { Product } from "@/API";
 import {
   Table,
   TableHead,
@@ -34,7 +34,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
             <TableCell>
               {item?.image === null || item?.image === undefined ? null : (
                 <StorageImage
-                  width={"250px"}
+                  width="250px"
                   accessLevel="private"
                   alt="image"
                   imgKey={item?.image}
