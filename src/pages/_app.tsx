@@ -4,7 +4,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { Amplify } from "aws-amplify";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import awsExports from "@/aws-exports";
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 
 Amplify.configure({ ...awsExports, ssr: true });
 
