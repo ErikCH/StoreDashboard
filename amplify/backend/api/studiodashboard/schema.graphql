@@ -1,18 +1,18 @@
-type Genre @model @auth(rules: [{allow: public}]) {
+type Genre @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}, {allow: private, operations: [create, read]}]) {
   id: ID!
   name: String
   value: String
   Products: [Product] @hasMany(indexName: "byGenre", fields: ["id"])
 }
 
-type Platform @model @auth(rules: [{allow: public}]) {
+type Platform @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}, {allow: private, operations: [create, read]}]) {
   id: ID!
   name: String
   value: String
   Products: [Product] @hasMany(indexName: "byPlatform", fields: ["id"])
 }
 
-type Product @model @auth(rules: [{allow: public}]) {
+type Product @model @auth(rules: [{allow: public, operations: [read]}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}, {allow: private, operations: [create, read]}]) {
   id: ID!
   name: String
   isSold: Boolean

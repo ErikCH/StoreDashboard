@@ -6,7 +6,11 @@ import Layout from "@/components/layout";
 import "@/styles/globals.css";
 import "@aws-amplify/ui-react/styles.css";
 
-Amplify.configure({ ...awsExports, ssr: true });
+Amplify.configure({
+  ...awsExports,
+  ssr: true,
+  aws_appsync_authenticationType: "AMAZON_COGNITO_USER_POOLS",
+});
 
 function App({ Component, pageProps }: AppProps) {
   return (

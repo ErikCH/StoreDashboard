@@ -8,7 +8,6 @@ import {
 } from "@aws-amplify/ui-react";
 import { StorageImage } from "@aws-amplify/ui-react-storage";
 import { ProductsTableProps } from "@/types/types";
-import { useRouter } from "next/router";
 
 export default function ProductsTable({
   products,
@@ -39,7 +38,7 @@ export default function ProductsTable({
               {item?.image === null || item?.image === undefined ? null : (
                 <StorageImage
                   width="250px"
-                  accessLevel="private"
+                  accessLevel="public"
                   alt="image"
                   imgKey={item?.image}
                 ></StorageImage>

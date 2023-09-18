@@ -5,7 +5,11 @@ import awsExports from "@/aws-exports";
 import * as mutations from "@/graphql/mutations";
 import { DeleteProductInput } from "@/API";
 
-Amplify.configure({ ...awsExports, ssr: true });
+Amplify.configure({
+  ...awsExports,
+  ssr: true,
+  aws_appsync_authenticationType: "AMAZON_COGNITO_USER_POOLS",
+});
 
 export default async function handler(
   req: NextApiRequest,

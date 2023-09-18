@@ -531,7 +531,7 @@ export default function ProductCreateForm(props) {
             });
           }}
           processFile={processFile}
-          accessLevel={"private"}
+          accessLevel={"public"}
           acceptedFileTypes={["image/*"]}
           isResumable={false}
           showThumbnails={true}
