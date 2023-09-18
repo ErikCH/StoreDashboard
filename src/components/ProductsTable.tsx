@@ -4,11 +4,17 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Button,
 } from "@aws-amplify/ui-react";
 import { StorageImage } from "@aws-amplify/ui-react-storage";
 import { ProductsTableProps } from "@/types/types";
+import { useRouter } from "next/router";
 
-export default function ProductsTable({ products }: ProductsTableProps) {
+export default function ProductsTable({
+  products,
+  onClickDelete,
+  admin,
+}: ProductsTableProps) {
   return (
     <Table caption="Products" width="50%" margin="0 auto">
       <TableHead>
@@ -19,6 +25,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
           <TableCell as="th">Platform</TableCell>
           <TableCell as="th">Image</TableCell>
           <TableCell as="th">Date Added</TableCell>
+          {admin ? <TableCell as="th">Delete?</TableCell> : null}
         </TableRow>
       </TableHead>
       <TableBody>
@@ -41,6 +48,16 @@ export default function ProductsTable({ products }: ProductsTableProps) {
             <TableCell>
               {Intl.DateTimeFormat("en-us").format(new Date(item?.createdAt!))}
             </TableCell>
+            {admin ? (
+              <TableCell>
+                <Button
+                  variation="destructive"
+                  onClick={() => onClickDelete(item?.id)}
+                >
+                  Delete
+                </Button>
+              </TableCell>
+            ) : null}
           </TableRow>
         ))}
       </TableBody>

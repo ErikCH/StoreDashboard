@@ -13,6 +13,8 @@ export interface ProductDetailsProps {
 
 export interface ProductsTableProps {
   products: Product[];
+  onClickDelete: (id: string) => void;
+  admin: boolean;
 }
 
 export interface ItemsTableProps {
