@@ -1,4 +1,3 @@
-import { ItemsTableProps } from "@/types/types";
 import {
   Table,
   TableHead,
@@ -6,6 +5,7 @@ import {
   TableCell,
   TableBody,
 } from "@aws-amplify/ui-react";
+import { ItemsTableProps } from "@/types/types";
 
 export default function ItemsTable({ tableName, data }: ItemsTableProps) {
   return (

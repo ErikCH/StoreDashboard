@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-
 import { API } from "aws-amplify";
-import * as queries from "@/graphql/queries";
 import { GraphQLQuery } from "@aws-amplify/api";
+import * as queries from "@/graphql/queries";
+import ProductDetails from "@/components/ProductDetails";
 import { ListPlatformsQuery } from "@/API";
 import { TableValues } from "@/types/types";
-import ProductDetails from "@/components/ProductDetails";
 
 export default function Platforms() {
   const [platforms, setPlatforms] = useState<TableValues[]>();
@@ -22,7 +21,9 @@ export default function Platforms() {
   }, []);
   return (
     <>
-      {platforms === undefined ? null : (
+      {platforms === undefined ? (
+        "No platforms available"
+      ) : (
         <ProductDetails headingName="Platforms" items={platforms} />
       )}
     </>

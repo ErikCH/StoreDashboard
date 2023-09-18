@@ -1,10 +1,10 @@
-import { API } from "aws-amplify";
-import * as queries from "@/graphql/queries";
-import { GraphQLQuery } from "@aws-amplify/api";
-import { ListGenresQuery } from "@/API";
 import { useEffect, useState } from "react";
-import { TableValues } from "@/types/types";
+import { API } from "aws-amplify";
+import { GraphQLQuery } from "@aws-amplify/api";
+import * as queries from "@/graphql/queries";
 import ProductDetails from "@/components/ProductDetails";
+import { ListGenresQuery } from "@/API";
+import { TableValues } from "@/types/types";
 
 export default function Genres() {
   const [genres, setGenres] = useState<TableValues[]>();
@@ -21,7 +21,9 @@ export default function Genres() {
 
   return (
     <>
-      {genres === undefined ? null : (
+      {genres === undefined ? (
+        "No Genres available"
+      ) : (
         <ProductDetails headingName="Genres" items={genres} />
       )}
     </>

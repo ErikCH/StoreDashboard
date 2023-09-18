@@ -1,12 +1,13 @@
-import { Button, Heading, View, useAuthenticator } from "@aws-amplify/ui-react";
-import { API } from "aws-amplify";
 import { useEffect, useState } from "react";
-import * as queries from "@/graphql/queries";
+import { Button, Heading, View, useAuthenticator } from "@aws-amplify/ui-react";
 import { GraphQLQuery } from "@aws-amplify/api";
-import { ListProductsQuery, Product } from "@/API";
+import { API } from "aws-amplify";
+import * as queries from "@/graphql/queries";
 import ProductsTable from "@/components/ProductsTable";
+import { ListProductsQuery, Product } from "@/API";
 
 export default function Home() {
+  const { signOut } = useAuthenticator((context) => [context.signOut]);
   const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
@@ -19,13 +20,14 @@ export default function Home() {
     grabProducts();
   }, []);
 
-  const { signOut } = useAuthenticator((context) => [context.signOut]);
   return (
     <View className="flex flex-col items-center">
       <Heading level={1} margin="3rem">
         List Of Products!
       </Heading>
-      {products === undefined || products === null ? null : (
+      {products === undefined ? (
+        "No products available"
+      ) : (
         <ProductsTable products={products} />
       )}
       <Button onClick={signOut} variation="primary" margin="2rem">

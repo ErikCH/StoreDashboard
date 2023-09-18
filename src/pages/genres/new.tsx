@@ -1,6 +1,6 @@
+import { useRouter } from "next/router";
 import { Flex, Heading } from "@aws-amplify/ui-react";
 import GenreCreateForm from "@/ui-components/GenreCreateForm";
-import { useRouter } from "next/router";
 
 export default function NewGenre() {
   const router = useRouter();

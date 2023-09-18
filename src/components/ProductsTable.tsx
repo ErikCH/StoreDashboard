@@ -1,4 +1,3 @@
-import { ProductsTableProps } from "@/types/types";
 import {
   Table,
   TableHead,
@@ -7,6 +6,7 @@ import {
   TableBody,
 } from "@aws-amplify/ui-react";
 import { StorageImage } from "@aws-amplify/ui-react-storage";
+import { ProductsTableProps } from "@/types/types";
 
 export default function ProductsTable({ products }: ProductsTableProps) {
   return (

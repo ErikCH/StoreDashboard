@@ -1,6 +1,6 @@
+import router from "next/router";
 import { Button, Flex, Heading } from "@aws-amplify/ui-react";
 import ItemsTable from "./ItemsTable";
-import router from "next/router";
 import { ProductDetailsProps } from "@/types/types";
 
 export default function ProductDetails({

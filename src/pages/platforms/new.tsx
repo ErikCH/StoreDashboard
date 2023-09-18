@@ -1,6 +1,6 @@
+import { useRouter } from "next/router";
 import { Flex, Heading } from "@aws-amplify/ui-react";
 import PlatformCreateForm from "@/ui-components/PlatformCreateForm";
-import { useRouter } from "next/router";
 
 export default function NewPlatform() {
   const router = useRouter();
