@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-studiodashboard-dev-133642-authRole",
+      "UnauthRoleArn": "arn:aws:iam::978507172420:role/amplify-studiodashboard-dev-133642-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::978507172420:role/amplify-studiodashboard-dev-133642-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-studiodashboard-dev-133642-deployment",
+      "UnauthRoleName": "amplify-studiodashboard-dev-133642-unauthRole",
+      "StackName": "amplify-studiodashboard-dev-133642",
+      "StackId": "arn:aws:cloudformation:us-east-1:978507172420:stack/amplify-studiodashboard-dev-133642/6e1efc60-4e87-11ee-912c-0e81171456f5",
+      "AmplifyAppId": "d2wp45f8c9m14t"
+    },
+    "categories": {
+      "auth": {
+        "studiodashboard": {}
+      },
+      "storage": {
+        "s3studiodashboardstorage6411928f": {}
+      }
+    }
+  }
+}
