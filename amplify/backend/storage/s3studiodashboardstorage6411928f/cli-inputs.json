@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3studiodashboardstorage6411928f",
+  "bucketName": "studiodashboard-storage-6411928f",
+  "policyUUID": "747180f9",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
