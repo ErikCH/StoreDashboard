@@ -25,7 +25,7 @@ export default async function handler(
         },
       } = await Auth.currentAuthenticatedUser();
       if (payload["cognito:groups"]?.includes("admin")) {
-        // delete users
+        // delete user
         await (API as APIClass).graphql<GraphQLQuery<DeleteProductInput>>({
           query: mutations.deleteProduct,
           variables: { input: { id } },
